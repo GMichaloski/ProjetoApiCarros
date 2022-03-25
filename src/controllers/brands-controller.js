@@ -1,6 +1,6 @@
 import { prisma } from "../helpers/utils";
 
-export const GET = async (_, reply) => {
+export const getAll = async (_, reply) => {
   try {
     return await prisma.brand.findMany();
   } catch (error) {
@@ -8,7 +8,7 @@ export const GET = async (_, reply) => {
   }
 };
 
-export const POST = async (req, reply) => {
+export const create = async (req, reply) => {
   const { name } = req.body;
   try {
     const post = await prisma.brand.create({
@@ -20,7 +20,7 @@ export const POST = async (req, reply) => {
   }
 };
 
-export const PUT = async (req, reply) => {
+export const edit = async (req, reply) => {
   const { id, name } = req.body;
   try {
     const edit = await prisma.brand.update({
@@ -37,7 +37,7 @@ export const PUT = async (req, reply) => {
   }
 };
 
-export const DELETE = async (req, reply) => {
+export const remove = async (req, reply) => {
   const { id } = req.body;
   try {
     const deleted = await prisma.brand.delete({
