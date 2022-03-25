@@ -1,4 +1,4 @@
-import { prisma } from "../helpers/utils";
+import { prisma } from "../helpers/utils.js";
 
 export const getAll = async (_, reply) => {
   try {

@@ -1,7 +1,7 @@
 import multer from "fastify-multer";
 import path from "path";
-import * as BrandsController from "../controllers/brands-controller";
-import * as CarsController from "../controllers/cars-controller";
+import * as BrandsController from "../controllers/brands-controller.js";
+import * as CarsController from "../controllers/cars-controller.js";
 
 const storage = multer.diskStorage({
   destination: (req, res, cb) => {
@@ -57,9 +57,9 @@ const routes = {
     handler: BrandsController.remove,
   },
 };
-routes = Object.values(routes);
-export default givenRoutes = (fastify, _, next) => {
-  for (let route of routes) {
+const listRoutes = Object.values(routes);
+export default (fastify, _, next) => {
+  for (let route of listRoutes) {
     fastify.route(route);
   }
   next();

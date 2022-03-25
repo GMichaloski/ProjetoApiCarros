@@ -3,7 +3,7 @@ import fastify from "fastify";
 import multer from "fastify-multer";
 import helmet from "fastify-helmet";
 import fastifyStatic from "fastify-static";
-// import { givenRoutes } from "./routes/routes";
+import routes from "./routes/routes.js";
 
 const server = fastify({ logger: true });
 server.register(fastifyStatic, {
@@ -12,7 +12,7 @@ server.register(fastifyStatic, {
 });
 server.register(multer.contentParser);
 server.register(helmet);
-// server.register(givenRoutes);
+server.register(routes);
 
 server.listen(3000, (err, address) => {
   if (err) {
