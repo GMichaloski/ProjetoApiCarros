@@ -3,24 +3,21 @@ import fastify from "fastify";
 import multer from "fastify-multer";
 import helmet from "fastify-helmet";
 import fastifyStatic from "fastify-static";
-import routes from "./routes/routes";
+// import { givenRoutes } from "./routes/routes";
 
-const app = fastify({ logger: true });
-app.register(fastifyStatic, {
+const server = fastify({ logger: true });
+server.register(fastifyStatic, {
   root: path.join(path.resolve(), "public"),
   prefix: "/public/",
 });
-app.register(multer.contentParser);
-app.register(helmet);
-app.register(routes);
+server.register(multer.contentParser);
+server.register(helmet);
+// server.register(givenRoutes);
 
-const start = async () => {
-  try {
-    await server.listen(5432);
-    console.log(`Server ready: ${adress}`);
-  } catch (err) {
-    server.log.error(err);
+server.listen(3000, (err, address) => {
+  if (err) {
+    console.error(err);
     process.exit(1);
   }
-};
-start();
+  console.log(`Server ready: ${address}`);
+});

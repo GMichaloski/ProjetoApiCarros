@@ -19,46 +19,46 @@ const routes = {
   getCar: {
     method: "GET",
     url: "/cars",
-    handler: CarsController.GET,
+    handler: CarsController.getAll,
   },
   postCar: {
     method: "POST",
     url: "/cars",
-    handler: CarsController.POST,
+    handler: CarsController.create,
   },
   editCar: {
     method: "PUT",
     url: "/cars",
-    handler: CarsController.PUT,
+    handler: CarsController.edit,
   },
   deleteCar: {
     method: "DELETE",
     url: "/cars",
-    handler: CarsController.DELETE,
+    handler: CarsController.remove,
   },
   getBrand: {
     method: "GET",
     url: "/brands",
-    handler: BrandsController.GET,
+    handler: BrandsController.getAll,
   },
   postBrand: {
     method: "POST",
     url: "/brands",
-    handler: BrandsController.POST,
+    handler: BrandsController.create,
   },
   editBrand: {
     method: "PUT",
     url: "/brands",
-    handler: BrandsController.PUT,
+    handler: BrandsController.edit,
   },
   deleteBrand: {
     method: "DELETE",
     url: "/brands",
-    handler: BrandsController.DELETE,
+    handler: BrandsController.remove,
   },
 };
 routes = Object.values(routes);
-export default (fastify, _, next) => {
+export default givenRoutes = (fastify, _, next) => {
   for (let route of routes) {
     fastify.route(route);
   }
