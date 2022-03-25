@@ -2,7 +2,7 @@ import { prisma } from "../helpers/utils.js";
 
 export const getAll = async (_, reply) => {
   try {
-    return await prisma.cars.findMany();
+    await prisma.car.findMany();
   } catch (error) {
     reply.status(500).send("Impossível carregar os posts");
   }
@@ -11,7 +11,7 @@ export const getAll = async (_, reply) => {
 export const create = async (req, reply) => {
   const { name } = req.body;
   try {
-    const post = await prisma.cars.create({
+    const post = await prisma.car.create({
       data: { name },
     });
     return reply.send(post);
@@ -23,7 +23,7 @@ export const create = async (req, reply) => {
 export const edit = async (req, reply) => {
   const { id, name } = req.body;
   try {
-    const edit = await prisma.cars.update({
+    const edit = await prisma.car.update({
       where: {
         id: id,
       },
@@ -40,7 +40,7 @@ export const edit = async (req, reply) => {
 export const remove = async (req, reply) => {
   const { id } = req.body;
   try {
-    const deleted = await prisma.cars.delete({
+    const deleted = await prisma.car.delete({
       where: {
         id: id,
       },

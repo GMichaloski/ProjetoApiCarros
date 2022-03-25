@@ -2,7 +2,8 @@ import { prisma } from "../helpers/utils.js";
 
 export const getAll = async (_, reply) => {
   try {
-    return await prisma.brand.findMany();
+    console.log(prisma);
+    await prisma.brand.findMany();
   } catch (error) {
     reply.status(500).send("Impossível carregar os posts");
   }
