@@ -2,17 +2,19 @@ import { prisma } from "../helpers/utils.js";
 
 export const getAll = async (_, reply) => {
   try {
-    await prisma.car.findMany();
+    const cars = await prisma.car.findMany();
+    return cars;
   } catch (error) {
-    reply.status(500).send("Impossível carregar os posts");
+    console.log(error);
+    return reply.status(500).send("Impossível carregar os posts");
   }
 };
 
 export const create = async (req, reply) => {
-  const { name } = req.body;
+  const { name, year, brand_id, image_url } = req.body;
   try {
     const post = await prisma.car.create({
-      data: { name },
+      data: { name, year, brand_id, image_url },
     });
     return reply.send(post);
   } catch (error) {
